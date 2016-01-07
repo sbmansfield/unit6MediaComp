@@ -99,4 +99,80 @@ public class IntArrayWorker
     }
   }
  
+    /**
+     * An example of a method - replace this comment with your own
+     *  that describes the operation of the method
+     *
+     * @pre     preconditions for the method
+     *          (what the method assumes about the method's parameters and class's state)
+     * @post    postconditions for the method
+     *          (what the method guarantees upon completion)
+     * @param   y   description of parameter y
+     * @return  description of the return value
+     */
+    public int getCount(int value)
+    {
+        int count = 0;
+        for (int[] rowArray : matrix)
+        {
+            for (int item : rowArray)
+            {
+                if (value == item)
+                {
+                    count += item;
+                }
+            }
+        }
+        return count;
+    }
+    
+    /**
+     * An example of a method - replace this comment with your own
+     *  that describes the operation of the method
+     *
+     * @pre     preconditions for the method
+     *          (what the method assumes about the method's parameters and class's state)
+     * @post    postconditions for the method
+     *          (what the method guarantees upon completion)
+     * @param   y   description of parameter y
+     * @return  description of the return value
+     */
+    public int getLargest()
+    {
+        int largest = matrix[0][0];
+        for (int[] rowArray : matrix)
+        {
+            for (int item : rowArray)
+            {
+                if (item > largest)
+                {
+                    largest = item;
+                }
+            }
+        }
+        return largest;
+    }
+
+    /**
+     * An example of a method - replace this comment with your own
+     *  that describes the operation of the method
+     *
+     * @pre     preconditions for the method
+     *          (what the method assumes about the method's parameters and class's state)
+     * @post    postconditions for the method
+     *          (what the method guarantees upon completion)
+     * @param   y   description of parameter y
+     * @return  description of the return value
+     */
+    public int getColTotal(int col)
+    {
+        int total = 0;
+        for (int i = 0; i < matrix.length; i++)
+        {
+            total += matrix[i][col];
+        }
+        return total;
+    }
+    
+    
 }
