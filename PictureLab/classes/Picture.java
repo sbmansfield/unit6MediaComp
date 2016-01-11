@@ -138,8 +138,12 @@ public class Picture extends SimplePicture
         rightPixel = pixels[row]                       
                          [mirrorPoint - col + mirrorPoint];
         rightPixel.setColor(leftPixel.getColor());
+        
+        count++;
       }
     }
+    
+    System.out.println(count);
   }
   
   /** copy from the passed fromPic to the
@@ -263,5 +267,64 @@ public class Picture extends SimplePicture
               bottomPixel.setColor(topPixel.getColor());
           }
       } 
+  }
+  
+  public void mirrorHorizontalBotToTop()
+  {
+      Pixel[][] pixels = this.getPixels2D();
+      Pixel topPixel = null;
+      Pixel bottomPixel = null;
+      int height = pixels.length;
+      
+      for (int row = 0; row < height/2; row++)
+      {
+          for (int col = 0; col < pixels[0].length; col++)
+          {
+              topPixel = pixels[row][col];
+              bottomPixel = pixels[height-1-row][col];
+              topPixel.setColor(bottomPixel.getColor());
+          }
+      } 
+  }
+  
+  public void mirrorArms()
+  {
+    int mirrorPoint = 206;
+    Pixel leftPixel = null;
+    Pixel rightPixel = null;
+    Pixel[][] pixels = this.getPixels2D();
+    
+    // loop through the rows
+    for (int row = 158; row < 195; row++)
+    {
+      // loop from 97 to just before the mirror point
+      for (int col = 100; col < mirrorPoint; col++)
+      {
+        leftPixel = pixels[row][col];      
+        rightPixel = pixels[row]                       
+                         [mirrorPoint - col + mirrorPoint];
+        rightPixel.setColor(leftPixel.getColor());
+      }
+    }
+  }
+  
+  public void mirrowGull()
+  {
+    int mirrorPoint = 350;
+    Pixel leftPixel = null;
+    Pixel rightPixel = null;
+    Pixel[][] pixels = this.getPixels2D();
+      
+    for (int row = 230; row < 325; row++)
+    {
+      // loop from 230 to just before the mirror point
+      for (int col = 230; col < mirrorPoint; col++)
+      {
+        leftPixel = pixels[row][col];      
+        rightPixel = pixels[row]                       
+                         [mirrorPoint - col + mirrorPoint];
+        rightPixel.setColor(leftPixel.getColor());
+      }
+    }
   }
 } // this } is the end of class Picture, put all new methods before this
