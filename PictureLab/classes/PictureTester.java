@@ -87,8 +87,40 @@ public class PictureTester
   {
       Picture seagull = new Picture("seagull.jpg");
       seagull.explore();
-      seagull.mirrowGull();
+      seagull.mirrorGull();
       seagull.explore();
+  }
+  
+  public static void testKeepOnlyBlue()
+  {
+      Picture caterpillar = new Picture("caterpillar.jpg");
+      caterpillar.explore();
+      caterpillar.keepOnlyBlue();
+      caterpillar.explore();
+  }
+  
+  public static void testNegate()
+  {
+      Picture caterpillar = new Picture("caterpillar.jpg");
+      caterpillar.explore();
+      caterpillar.negate();
+      caterpillar.explore();
+  }
+  
+  public static void testGrayscale()
+  {
+      Picture caterpillar = new Picture("caterpillar.jpg");
+      caterpillar.explore();
+      caterpillar.grayscale();
+      caterpillar.explore();
+  }
+  
+  public static void testFixUnderwater()
+  {
+      Picture water = new Picture("water.jpg");
+      water.explore();
+      water.fixUnderwater();
+      water.explore();
   }
   
   /** Main method for testing.  Every class can have a main
@@ -99,12 +131,12 @@ public class PictureTester
     // and comment out the ones you don't want
     // to run
     testZeroBlue();
-    //testKeepOnlyBlue();
+    testKeepOnlyBlue();
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
-    //testNegate();
-    //testGrayscale();
-    //testFixUnderwater();
+    testNegate();
+    testGrayscale();
+    testFixUnderwater();
     testMirrorVertical();
     testMirrorTemple();
     testMirrorArms();
