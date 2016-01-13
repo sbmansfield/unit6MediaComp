@@ -155,7 +155,6 @@ public class Picture extends SimplePicture
         count++;
       }
     }
-    
     System.out.println(count);
   }
   
@@ -386,6 +385,34 @@ public class Picture extends SimplePicture
   public void cropAndCopy( Picture sourcePicture, int startSourceRow, int endSourceRow, 
   int startSourceCol, int endSourceCol, int startDestRow, int startDestCol )
   {
+      Pixel sourcePixel = null;
+      Pixel targetPixel = null;
+        
+      for (int row = startSourceRow; row < endSourceRow + 1; row++)
+      {
+          for (int col = startSourceCol; col < endSourceCol + 1; col++)
+          {
+               sourcePixel = sourcePicture.getPixel(startSourceRow, startSourceCol);
+               targetPixel = getPixel(startDestRow, startDestCol);
+               targetPixel.setColor(sourcePixel.getColor());
+          }
+      } 
       
+      for (int sourceX = 0, targetX = 0; 
+        sourceX < sourcePicture.getWidth() &&
+        targetX < this.getWidth();
+        sourceX++, targetX++)
+        {
+            // loop through the rows
+         for (int sourceY = 0, targetY = 0; 
+           sourceY < sourcePicture.getHeight() && 
+           targetY < this.getHeight();
+           sourceY++, targetY++)
+         {
+             sourcePixel = sourcePicture.getPixel(sourceX,sourceY);
+             targetPixel = this.getPixel(targetX,targetY);
+             targetPixel.setColor(sourcePixel.getColor());
+         }
+      }
   }
 } // this } is the end of class Picture, put all new methods before this

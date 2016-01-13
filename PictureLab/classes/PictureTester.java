@@ -123,6 +123,15 @@ public class PictureTester
       water.explore();
   }
   
+  public static void testCropAndCopy()
+  {
+      Picture seagull = new Picture("seagull.jpg");
+      Picture caterpillar = new Picture("caterpillar.jpg");
+      seagull.explore();
+      seagull.cropAndCopy(caterpillar, 10, 100, 20, 200, 30, 40);
+      seagull.explore();
+  }
+  
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -154,5 +163,7 @@ public class PictureTester
     //testGetAverageForColumn(0);
     testMirrorVerticalRightToLeft();
     testMirrorHorizontal();
+    
+    testCropAndCopy();
   }
 }
