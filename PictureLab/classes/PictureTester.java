@@ -128,7 +128,7 @@ public class PictureTester
       Picture seagull = new Picture("seagull.jpg");
       Picture caterpillar = new Picture("caterpillar.jpg");
       seagull.explore();
-      seagull.cropAndCopy(caterpillar, 10, 100, 20, 200, 30, 40);
+      seagull.cropAndCopy(caterpillar, 10, 100, 20, 200, 300, 400);
       seagull.explore();
   }
   

@@ -387,25 +387,16 @@ public class Picture extends SimplePicture
   {
       Pixel sourcePixel = null;
       Pixel targetPixel = null;
-        
-      for (int row = startSourceRow; row < endSourceRow + 1; row++)
-      {
-          for (int col = startSourceCol; col < endSourceCol + 1; col++)
-          {
-               sourcePixel = sourcePicture.getPixel(startSourceRow, startSourceCol);
-               targetPixel = getPixel(startDestRow, startDestCol);
-               targetPixel.setColor(sourcePixel.getColor());
-          }
-      } 
       
-      for (int sourceX = 0, targetX = 0; 
-        sourceX < sourcePicture.getWidth() &&
+      // loop through the columns
+      for (int sourceX = startSourceCol, targetX = startDestCol; 
+        sourceX < endSourceCol + 1 &&
         targetX < this.getWidth();
         sourceX++, targetX++)
         {
             // loop through the rows
-         for (int sourceY = 0, targetY = 0; 
-           sourceY < sourcePicture.getHeight() && 
+         for (int sourceY = startSourceRow, targetY = startDestRow; 
+           sourceY < endSourceRow + 1 && 
            targetY < this.getHeight();
            sourceY++, targetY++)
          {
