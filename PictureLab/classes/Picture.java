@@ -192,7 +192,7 @@ public class Picture extends SimplePicture
   /** Method to create a collage of several pictures */
   public void createCollage()
   {
-    Picture flower1 = new Picture("flower1.jpg");
+    /*Picture flower1 = new Picture("flower1.jpg");
     Picture flower2 = new Picture("flower2.jpg");
     this.copy(flower1,0,0);
     this.copy(flower2,100,0);
@@ -203,7 +203,13 @@ public class Picture extends SimplePicture
     this.copy(flower1,400,0);
     this.copy(flower2,500,0);
     this.mirrorVertical();
-    this.write("collage.jpg");
+    this.write("collage.jpg");*/
+    
+    Picture canvas = new Picture(1766, 1830);
+    Picture jp1 = new Picture("collage1.jpg");
+    this.copy(jp1, 0, 0);
+    
+    
   }
   
   
@@ -394,7 +400,7 @@ public class Picture extends SimplePicture
         targetX < this.getWidth();
         sourceX++, targetX++)
         {
-            // loop through the rows
+         // loop through the rows
          for (int sourceY = startSourceRow, targetY = startDestRow; 
            sourceY < endSourceRow + 1 && 
            targetY < this.getHeight();
