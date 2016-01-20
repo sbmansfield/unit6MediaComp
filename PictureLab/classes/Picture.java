@@ -131,6 +131,22 @@ public class Picture extends SimplePicture
     } 
   }
   
+  public void flipVertical()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    Pixel leftPixel = null;
+    Pixel rightPixel = null;
+    int width = pixels[0].length;
+    for (int row = 0; row < pixels.length; row++)
+    {
+      for (int col = 0; col < width; col++)
+      {
+        leftPixel = pixels[row][col];
+        
+      }
+    } 
+  }
+  
   /** Mirror just part of a picture of a temple */
   public void mirrorTemple()
   {
@@ -205,11 +221,25 @@ public class Picture extends SimplePicture
     this.mirrorVertical();
     this.write("collage.jpg");*/
     
-    Picture canvas = new Picture(1766, 1830);
+    //original picture
     Picture jp1 = new Picture("collage1.jpg");
     this.copy(jp1, 0, 0);
-    
-    
+
+    Picture jp_grayscale = new Picture(jp1);
+    jp_grayscale.grayscale();
+    this.copy(jp_grayscale, 0, 500);
+
+    this.copy(jp1, 0, 1000);
+
+    this.copy(jp1, 352, 0);
+
+    Picture jp_mirrorsides = new Picture(jp1);
+    jp_mirrorsides.mirrorVerticalRightToLeft();
+    this.copy(jp_mirrorsides, 352, 500);
+
+    Picture jp_flip = new Picture(jp1);
+    jp_flip.flipVertical();
+    this.copy(jp_flip, 352, 1000);
   }
   
   
