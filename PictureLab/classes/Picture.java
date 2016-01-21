@@ -6,6 +6,9 @@ import java.text.*;
 import java.util.*;
 import java.util.List; // resolves problem with java.awt.List and java.util.List
 
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+
 /**
  * A class that represents a picture.  This class inherits from 
  * SimplePicture and allows the student to add functionality to
@@ -131,22 +134,6 @@ public class Picture extends SimplePicture
     } 
   }
   
-  public void flipVertical()
-  {
-    Pixel[][] pixels = this.getPixels2D();
-    Pixel leftPixel = null;
-    Pixel rightPixel = null;
-    int width = pixels[0].length;
-    for (int row = 0; row < pixels.length; row++)
-    {
-      for (int col = 0; col < width; col++)
-      {
-        leftPixel = pixels[row][col];
-        
-      }
-    } 
-  }
-  
   /** Mirror just part of a picture of a temple */
   public void mirrorTemple()
   {
@@ -227,19 +214,24 @@ public class Picture extends SimplePicture
 
     Picture jp_grayscale = new Picture(jp1);
     jp_grayscale.grayscale();
-    this.copy(jp_grayscale, 0, 500);
-
+    this.copy(jp_grayscale, 352,0);
+    
     this.copy(jp1, 0, 1000);
 
-    this.copy(jp1, 352, 0);
+    Picture jp4 = new Picture(jp1);
+    jp4.grayscale();
+    jp4.colorBrighten();
+    this.copy(jp4, 0, 500);
 
     Picture jp_mirrorsides = new Picture(jp1);
     jp_mirrorsides.mirrorVerticalRightToLeft();
+    jp_mirrorsides.colorBrighten();
     this.copy(jp_mirrorsides, 352, 500);
 
-    Picture jp_flip = new Picture(jp1);
-    jp_flip.flipVertical();
-    this.copy(jp_flip, 352, 1000);
+    Picture jp_mix = new Picture(jp1);
+    jp_mix.negate();
+    jp_mix.grayscale();
+    this.copy(jp_mix, 352, 1000);
   }
   
   
@@ -414,6 +406,20 @@ public class Picture extends SimplePicture
       {
         pixelObj.setGreen(pixelObj.getGreen()-100);
         pixelObj.setBlue(pixelObj.getBlue()-100);
+      }
+    }
+  }
+  
+  public void colorBrighten()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setRed(pixelObj.getRed()+100);
+        pixelObj.setGreen(pixelObj.getGreen()+100);
+        pixelObj.setBlue(pixelObj.getBlue()+100);
       }
     }
   }
