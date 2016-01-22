@@ -6,9 +6,6 @@ import java.text.*;
 import java.util.*;
 import java.util.List; // resolves problem with java.awt.List and java.util.List
 
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
-
 /**
  * A class that represents a picture.  This class inherits from 
  * SimplePicture and allows the student to add functionality to
@@ -28,7 +25,9 @@ public class Picture extends SimplePicture
     /* not needed but use it to show students the implicit call to super()
      * child constructors always call a parent constructor 
      */
-    super();  
+    super(); 
+    
+    Picture sourcePic = new Picture("collage1.jpg");
   }
   
   /**
@@ -195,43 +194,34 @@ public class Picture extends SimplePicture
   /** Method to create a collage of several pictures */
   public void createCollage()
   {
-    /*Picture flower1 = new Picture("flower1.jpg");
-    Picture flower2 = new Picture("flower2.jpg");
-    this.copy(flower1,0,0);
-    this.copy(flower2,100,0);
-    this.copy(flower1,200,0);
-    Picture flowerNoBlue = new Picture(flower2);
-    flowerNoBlue.zeroBlue();
-    this.copy(flowerNoBlue,300,0);
-    this.copy(flower1,400,0);
-    this.copy(flower2,500,0);
-    this.mirrorVertical();
-    this.write("collage.jpg");*/
-    
     //original picture
     Picture jp1 = new Picture("collage1.jpg");
     this.copy(jp1, 0, 0);
 
-    Picture jp_grayscale = new Picture(jp1);
-    jp_grayscale.grayscale();
-    this.copy(jp_grayscale, 352,0);
+    Picture jp2 = new Picture(jp1);
+    jp2.grayscale();
+    this.copy(jp2, 352,1000);
     
-    this.copy(jp1, 0, 1000);
+    Picture jp3 = new Picture(jp1);
+    jp3.mirrorHorizontal();
+    this.copy(jp3, 0, 1000);
 
     Picture jp4 = new Picture(jp1);
     jp4.grayscale();
     jp4.colorBrighten();
     this.copy(jp4, 0, 500);
 
-    Picture jp_mirrorsides = new Picture(jp1);
-    jp_mirrorsides.mirrorVerticalRightToLeft();
-    jp_mirrorsides.colorBrighten();
-    this.copy(jp_mirrorsides, 352, 500);
+    Picture jp5 = new Picture(jp1);
+    jp5.mirrorVerticalRightToLeft();
+    jp5.colorBrighten();
+    this.copy(jp5, 352, 500);
 
-    Picture jp_mix = new Picture(jp1);
-    jp_mix.negate();
-    jp_mix.grayscale();
-    this.copy(jp_mix, 352, 1000);
+    Picture jp6 = new Picture(jp1);
+    jp6.negate();
+    jp6.grayscale();
+    this.copy(jp6, 352,0);
+    
+    this.write("MyCollage.jpg");
   }
   
   
@@ -417,9 +407,9 @@ public class Picture extends SimplePicture
     {
       for (Pixel pixelObj : rowArray)
       {
-        pixelObj.setRed(pixelObj.getRed()+100);
-        pixelObj.setGreen(pixelObj.getGreen()+100);
-        pixelObj.setBlue(pixelObj.getBlue()+100);
+        pixelObj.setRed(pixelObj.getRed()+75);
+        pixelObj.setGreen(pixelObj.getGreen()+75);
+        pixelObj.setBlue(pixelObj.getBlue()+75);
       }
     }
   }
